@@ -1,0 +1,21 @@
+---
+#test run with running a script
+- name: copy and run script
+  hosts: ec2
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: false
+  tasks:
+  #runs the script
+  - name: run script
+    key_name: capstone-project
+    region: "us-east-2"
+    script: /home/marcus/Script.py
+    args:
+      creates: /home/marcus/Script.py
+  - name: start nginx
+    key_name: capstone-project
+    region: "us-east-2"
+    command: service nginx start

@@ -1,0 +1,16 @@
+---
+#test run with running a script
+- name: run dns setup script
+  hosts: ec2
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: false
+  tasks:
+  - name: run script
+    key_name: capstone-project
+    region: "us-east-2"
+    script: /home/marcus/set_record.bash
+    args:
+      creates: /home/marcus/set_record.bash

@@ -1,0 +1,13 @@
+---
+- name: run dns removal script
+  hosts: ec2
+  remote_user: ubuntu
+  connection: ssh
+  gather_facts: false
+  tasks:
+  - name: run script
+    key_name: capstone-project
+    region: "us-east-2"
+    script: /home/marcus/delete-dns-record.py
+    args:
+      creates: /home/marcus/delete-dns-record.py

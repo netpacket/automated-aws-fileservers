@@ -1,0 +1,14 @@
+---
+#test run with running a script
+- name: start service
+  hosts: ec2
+  remote_user: ubuntu
+  connection: ssh
+  gather_facts: false
+  tasks:
+   - name: start seafile server
+     region: "us-east-2"
+     command: /home/ubuntu/seafile-server/seafile-pro-server-6.2.4/seafile.sh start
+   - name: start seafile hub
+     region: "us-east-2"
+     command: /home/ubuntu/seafile-server/seafile-pro-server-6.2.4/seahub.sh start

@@ -1,0 +1,20 @@
+---
+#terminate the things
+- name: shutdown
+  hosts: ec2
+#  remote_user: ubuntu
+  connection: local
+  gather_facts: False
+  tasks:
+  - name: Terminate thyself 
+    ec2:
+      key_name: temp-key
+      instance_tags:
+         Name: capstone-project
+      region: 'us-east-2'
+      instance_type: "t2.small"
+      image: "ami-05e1d260"
+      state: 'absent'
+      instance_ids: "instance id" #still figuring out json filtering and variables to not hard code the id
+    register: ec2
+

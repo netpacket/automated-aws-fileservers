@@ -1,0 +1,56 @@
+---
+#basic provisioning example
+    - name: Create AWS resources
+      remote_user: ubuntu
+      hosts: localhost
+      connection: local
+      gather_facts: False
+      tasks:
+      - name: Create an EC2 instance
+        ec2:
+          aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+          aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+          key_name: temp-key
+          region: "us-east-2"
+          instance_type: "t2.small"
+          image: "ami-94c4f7f1"
+          wait: yes
+          volumes:
+            - device_name: /dev/sda1
+              volume_type: gp2
+              volume_size: 10
+              delete_on_termination: true
+          exact_count: 1
+          count_tag:
+             Name: capstone-project
+          instance_tags:
+             Name: capstone-project
+        register: ec2
+
+      - name: Add security group
+        ec2_group:
+          region: "us-east-2"
+          name: "test2"
+          description: default VPC security group
+          group_id: sg-c74921ae
+          state: present
+          rules:
+            - proto: tcp
+              ports:
+              - 80
+              - 443
+              - 22
+              cidr_ip: 0.0.0.0/0
+
+      - name: Waiting for SSH to come up
+        wait_for:
+          host: "{{ item.public_ip }}"
+          port: 22
+          delay: 15
+          timeout: 30
+          state: started
+        with_items: "{{ ec2.instances }}"
+      - name: accepting ssh fingerprints
+        shell: ssh-keyscan -H {{ item.public_ip }} >> ~/.ssh/known_hosts
+        with_items: "{{ ec2.instances }}"              
+

@@ -1,0 +1,18 @@
+---
+#test run with running a script
+- name: create seafile account
+  hosts: ec2
+  remote_user: ubuntu
+  connection: ssh
+  gather_facts: false
+  tasks:
+   - name: create account
+     key_name: capstone-project
+     region: "us-east-2"
+     script: /home/marcus/sf-acct-creation.bash
+   - name: restart seafile server
+     region: "us-east-2"
+     command: /home/ubuntu/seafile-server/seafile-pro-server-6.2.4/seafile.sh restart
+   - name: restart seafile hub
+     region: "us-east-2"
+     command: /home/ubuntu/seafile-server/seafile-pro-server-6.2.4/seahub.sh restart
