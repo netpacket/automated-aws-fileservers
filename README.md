@@ -36,7 +36,8 @@ Ansible - terminating Playbooks and scripts:
 run playbooks: ansible-playbook <play> 
 
 Future goals for this project:
-                              - Properly hookup to front-end console that allows for user input to set the user's to the correct Seafile security roles. Plus, the Ansible playbooks can run smoothly. Finally, dashboard to see the status on the AWS instances.
+                             
+                             - Properly hookup to front-end console that allows for user input to set the user's to the correct Seafile security roles. Plus, the Ansible playbooks can run smoothly. Finally, dashboard to see the status on the AWS instances.
                               
                               - Ansible playbook terminate-aws.yml needs to have json filtering search for the instance_ids value so that the developer does not need to hard code the instance id. Ansible configuration for better granular selection of AWS instances for terminating and configuring (use groups). Set a timer for terminating process for the AWS instances. Configure a faster process for Ansible to register running EC2 instances between the provisioning-aws.yml and domain-generator.yml or setup asynchronous tasks in playbooks.
                               
