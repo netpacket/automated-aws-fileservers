@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#Chris M
 #searches for the new website for seafile curl parameters
 domain=$(egrep -o "........dr0ppin.science" /home/ubuntu/seafile-server/conf/seahub_settings.py)
 
