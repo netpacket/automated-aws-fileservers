@@ -8,6 +8,7 @@ Completion: All of the Ansible plays and scripts were developed as a framework f
 Run the update_env.bash script before running the Ansible playbooks. Near future step, set the dependencies for API keys and file paths to a locked down and read-only dynamic inventory file. 
 
 To make the ssh connection easier for yourself, run the following commands to bypass ssh passphrase prompt:
+                              
                               1. ssh-agent bash
                               
                               2. cd .ssh/
@@ -15,6 +16,7 @@ To make the ssh connection easier for yourself, run the following commands to by
                               3. ssh-add <private key.pem>
 
 Ansible - provisioning Playbooks and scripts:
+                              
                               1. provisioning-aws.yml
                               
                               2. domain-generator.yml / dependent on subdomain_creator.py
@@ -26,6 +28,7 @@ Ansible - provisioning Playbooks and scripts:
                               5. sf-creation.yml / dependent on sf-acct-creation.bash
 
 Ansible - terminating Playbooks and scripts:
+                             
                               1. dns-teardown.yml / dependent on delete-dns-record.py
                               
                               2. terminate-aws.yml 
