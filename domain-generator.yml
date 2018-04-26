@@ -12,9 +12,9 @@
   - name: run script
     key_name: capstone-project
     region: "us-east-2"
-    script: /home/marcus/Script.py
+    script: /home/marcus/subdomain_creator.py
     args:
-      creates: /home/marcus/Script.py
+      creates: /home/marcus/subdomain_creator.py
   - name: start nginx
     key_name: capstone-project
     region: "us-east-2"
