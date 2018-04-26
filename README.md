@@ -9,21 +9,28 @@ Run the update_env.bash script before running the Ansible playbooks. Near future
 
 To make the ssh connection easier for yourself, run the following commands to bypass ssh passphrase prompt:
                               1. ssh-agent bash
+                              
                               2. cd .ssh/
+                              
                               3. ssh-add <private key.pem>
 
 Ansible - provisioning Playbooks and scripts:
                               1. provisioning-aws.yml
+                              
                               2. domain-generator.yml / dependent on subdomain_creator.py
+                              
                               3. dns-setup.yml  / dependent on set_record.bash
+                              
                               4. start-service.yml
+                              
                               5. sf-creation.yml / dependent on sf-acct-creation.bash
 
 Ansible - terminating Playbooks and scripts:
                               1. dns-teardown.yml / dependent on delete-dns-record.py
+                              
                               2. terminate-aws.yml 
 
-run playbooks
+run playbooks: ansible-playbook <play> 
 
 Future goals for this project:
                               - Properly hookup to front-end console that allows for user input to set the user's to the correct Seafile security roles. Plus, the Ansible playbooks can run smoothly. Finally, dashboard to see the status on the AWS instances.
